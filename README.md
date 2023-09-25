@@ -1,7 +1,7 @@
 TP Especial - Web II
 -Integrantes: 
 Lara Meijboom: lariimeijboom@gmail.com, 
-Juana Larrosa Mendez: 
+Juana Larrosa Mendez: juaanamendez8@gmail.com
 
 -Temática: 
 Página web de una serie ("Black Mirror").
