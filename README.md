@@ -1,13 +1,13 @@
-# TPE-WEB2
 TP Especial - Web II
 -Integrantes: 
-Lara Meijboom - email: lariimeijboom@gmail.com
-
-Juana Larrosa Mendez - email: 
+Lara Meijboom: lariimeijboom@gmail.com, 
+Juana Larrosa Mendez: 
 
 -Temática: 
-Página web de una serie.
+Página web de una serie ("Black Mirror").
 
 -Descripción de la temática:
-Nuestro trabajo está basado en la creación de una base de datos y página web, en la que el usuario podrá navegar y conocer el catálogo de las distintas temporadas que posee la misma.
-De cada una de las temporadas, podrá conocer su descripción, y cantidad de capítulos. 
+Nuestro trabajo está basado en la creación de una base de datos y página web, en la que el usuario podrá navegar y conocer el catálogo de las distintas temporadas que posee una serie. 
+De cada una de las temporadas, podrá conocer su número y todos sus capítulos. De cada capítulo, conocerá su nombre y descripción.
+
+-Diagrama de Entidad-Relación (DER):
