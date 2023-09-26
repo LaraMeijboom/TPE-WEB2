@@ -11,3 +11,4 @@ Nuestro trabajo está basado en la creación de una base de datos y página web,
 De cada una de las temporadas, podrá conocer su número y todos sus capítulos. De cada capítulo, conocerá su nombre y descripción.
 
 -Diagrama de Entidad-Relación (DER):
+(En la carpeta DER).
