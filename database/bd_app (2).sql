@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 22:32:49
+-- Tiempo de generación: 07-10-2023 a las 23:30:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -50,8 +50,29 @@ INSERT INTO `chapters` (`chapter_id`, `name`, `description`, `season_id`) VALUES
 CREATE TABLE `seasons` (
   `season_id` int(11) NOT NULL,
   `releaseYear` int(5) NOT NULL,
-  `director` varchar(30) NOT NULL
+  `director` varchar(30) NOT NULL,
+  `recordingCity` varchar(255) NOT NULL,
+  `categoryGenre` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `users`
+--
+
+INSERT INTO `users` (`user_id`, `name`, `password`) VALUES
+(1, 'webadmin', '$2y$10$dK7Fj//V.gdvp/5ooK9aUeboP4TRHd/LqxtSYf1ITHc31Cgl6X87e');
 
 --
 -- Índices para tablas volcadas
@@ -71,6 +92,12 @@ ALTER TABLE `seasons`
   ADD PRIMARY KEY (`season_id`);
 
 --
+-- Indices de la tabla `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`user_id`);
+
+--
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
@@ -85,6 +112,12 @@ ALTER TABLE `chapters`
 --
 ALTER TABLE `seasons`
   MODIFY `season_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT de la tabla `users`
+--
+ALTER TABLE `users`
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
