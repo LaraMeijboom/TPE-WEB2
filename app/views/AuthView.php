@@ -1,7 +1,7 @@
 <?php
 
 class AuthView{
-    public function showLogin($error = null) {
+    public function showLogin($name = null) {
         require './templates/login.phtml';
     }
 }
