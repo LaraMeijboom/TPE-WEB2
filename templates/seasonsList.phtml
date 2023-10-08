@@ -1,14 +1,29 @@
 <?php
 require './templates/header.phtml';
 ?>
+<link rel="stylesheet" type="text/css" href="./styles/style.css">
 
-<ul class="seasonsList">
+<table class="seasonsTable">
+    <thead>
+        <tr>
+        <th class="seasonsRef">Season</th>
+        <th>Release year</th>
+        <th>Director</th>
+        <th>Recording city</th>
+        <th>Category genre</th>
+        </tr>
+    </thead>
+    <tbody>
     <?php foreach($seasons as $season){ ?>
-        <li>
-        <b> Temporada <?= $season->seasonNumber ?></b>
-        
-            </li>
+        <tr>
+        <td class="seasonsRef"> <a href=""> <?= $season->seasonNumber ?> </a></td>
+        <td><?= $season->releaseYear ?></td>
+        <td><?= $season->director ?></td>
+        <td><?= $season->recordingCity ?></td>
+        <td><?= $season->categoryGenre ?></td>
+        </tr>
     <?php } ?>
-</ul>
+    </tbody>
+</table>
 
 <?php require './templates/footer.phtml';
