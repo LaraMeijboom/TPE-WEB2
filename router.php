@@ -1,5 +1,7 @@
 <?php
-  require_once "./app/controllers/Controller.php";
+  require_once "./app/controllers/SeasonController.php";
+  require_once "./app/controllers/ChapterController.php";
+
   define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
 
@@ -9,11 +11,13 @@
   }
   
   $params = explode('/' , $action);
-  $controller = new Controller() ;
+  $seasonController = new SeasonController();
+  $chapterController = new ChapterController();
+
   
   switch ($params[0]) {
       case 'home':
-          $controller->showSeasons();
+          $seasonController->showSeasons();
           break;
     }
   ?>
