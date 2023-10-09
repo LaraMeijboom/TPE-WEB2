@@ -4,16 +4,18 @@ require_once './app/models/AuthModel.php';
 require_once './app/helpers/AuthHelper.php';
 
 class AuthController {
-    private $model;
-    private $view;
+    private $authModel;
+    private $authView;
+    private $authHelper;
 
     function __construct() {
-        $this->model = new UserModel();
-        $this->view = new AuthView();
+        $this->authModel = new UserModel();
+        $this->authView = new AuthView();
+        $this->authHelper = new AuthHelper();
     }
 
     public function showLogin() {
-        $this->view->showLogin();
+        $this->authView->showLogin();
     }
 
     public function auth() {
@@ -21,20 +23,35 @@ class AuthController {
         $password = $_POST['password'];
 
         if (empty($name) || empty($password)) {
-            $this->view->showLogin('Faltan completar datos');
+            $this->authView->showLogin('Faltan completar datos');
             return;
         }
 
         // busco el usuario
-        $user = $this->model->getByName($name);
+        $user = $this->authModel->getByName($name);
         if ($user && password_verify($password, $user->password)) {
             // ACA LO AUTENTIQUE
             
-            AuthHelper::login($user);
-            
+            $this->authHelper->login($user);
+            session_regenerate_id(true);
             header('Location: ' . BASE_URL);
         } else {
-            $this->view->showLogin('Usuario inválido');
+            $this->authView->showLogin('Usuario inválido');
+        }
+    }
+    function validateUser()
+    {
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $user = $this->authModel->getByName($name);
+        if ($name && (password_verify($password, $user->password))) {
+            session_start();
+            $_SESSION['USER_NAME'] = $user->name;
+            $_SESSION['USER_ID'] = $user->user_id;
+            $_SESSION['IS_LOGGED'] = true;
+            header("Location: " . BASE_URL);
+        } else {
+            $this->authView->showLogin();
         }
     }
 
