@@ -18,6 +18,7 @@
   switch ($params[0]) {
       case 'home':
           $seasonController->showSeasons();
+          $chapterController->ShowChapterOfSeason();
           break;
     }
   ?>
