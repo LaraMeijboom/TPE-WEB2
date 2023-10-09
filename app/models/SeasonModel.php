@@ -12,4 +12,18 @@ class SeasonModel{
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
+
+    function addSeason($seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre)
+    {
+        $query = $this->db->prepare("INSERT INTO seasons(seasonNumber, releaseYear, director, recordingCity, categoryGenre) VALUES (?,?,?,?,?)");
+        $query->execute([$seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre]);
+        return $this->db->lastInsertId();
+    }
+
+    function deleteSeason($season_id)
+    {
+        //ver
+        $query = $this->db->prepare("DELETE FROM chapters WHERE $season_id");
+        $query->execute();
+    }
 }
