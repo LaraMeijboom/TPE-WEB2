@@ -1,6 +1,6 @@
 <?php
 require_once './app/views/AuthView.php';
-require_once './app/models/UserModel.php';
+require_once './app/models/AuthModel.php';
 require_once './app/helpers/AuthHelper.php';
 
 class AuthController {
