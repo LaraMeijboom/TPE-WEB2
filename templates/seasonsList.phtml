@@ -1,7 +1,6 @@
 <?php
 require './templates/header.phtml';
 ?>
-<link rel="stylesheet" type="text/css" href="./styles/style.css">
 
 <div class="tableBox">
 <table class="seasonsTable">
@@ -17,13 +16,14 @@ require './templates/header.phtml';
     <tbody>
     <?php foreach($seasons as $season){ ?>
         <tr>
-        <td class="seasonsRef"> <a href=""> <?= $season->seasonNumber ?> </a></td>
+        <td class="seasonsRef"> <a href="season/<?=$season->season_id?>
+        "> <?= $season->seasonNumber ?> </a></td>
         <td><?= $season->releaseYear ?></td>
         <td><?= $season->director ?></td>
         <td><?= $season->recordingCity ?></td>
         <td><?= $season->categoryGenre ?></td>
         </tr>
-    <?php } ?>
+    <?php  } ?>
     </tbody>
 </table>
 </div>

@@ -19,9 +19,9 @@ class ChapterController
         $this->chapterView->showChapters($chapters);
     }
 
-    function ShowChapterOfSeason()
+    function ShowChapterOfSeason($id)
     {
-        $chapter = $this->chapterModel->getChapterOfSeason();
+        $chapter = $this->chapterModel->getChapterOfSeason($id);
         $this->chapterView->ShowChapterOfSeason($chapter);
     }
 }

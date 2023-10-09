@@ -8,11 +8,11 @@ class ChapterModel
         $this->db = new PDO('mysql:host=localhost;dbname=bd_app;charset=utf8', 'root');
     }
 
-    function getChapterOfSeason()
+    function getChapterOfSeason($season_id)
     {
-        $query = $this->db->prepare('SELECT * FROM chapters WHERE season_id_fk = 1F');
-        $query->execute();
-        return $query->fetch(PDO::FETCH_OBJ);
+        $query = $this->db->prepare('SELECT * FROM chapters WHERE season_id_fk = ?');
+        $query->execute([$season_id]);
+        return $query->fetchAll(PDO::FETCH_OBJ);
     }
     function getChapters()
     {

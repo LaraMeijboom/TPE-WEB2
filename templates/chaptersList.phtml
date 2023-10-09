@@ -1,0 +1,14 @@
+<?php include_once './templates/header.phtml'; ?>
+
+<?php foreach($chapters as $chapter){ ?>
+<div class="chapterCard" >
+    <div>
+    <h5 class="cardTitle"> <?= $chapter->name ?> </h5>
+    <p class="cardText"><?= $chapter->description ?></p>
+    </div>
+   
+  </div>
+  <?php } ?>
+
+
+<?php include_once './templates/footer.phtml';

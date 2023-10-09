@@ -1,3 +1,9 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    
+}
+
 .seasonsTable{
     background-color: rgb(42, 23, 46);
     border-collapse: collapse; /* Fusiona los bordes de las celdas */
@@ -19,4 +25,38 @@ footer{
         color: #fff; /* Color del texto */
         padding: 20px; /* Espaciado interno */
         text-align: center; /* Alineación del texto al centro */
+        position: absolute;
+        width: 100%;
     }
+
+.chapterCard{
+    background-color: #bebebe;
+   
+    width: 400px;
+    height: 200px;
+}
+
+.chapterCard div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px; 
+}
+
+.chapterCard .cardTitle {
+    border-bottom:1px solid rgb(26, 25, 25) ;
+    width: 100%;
+    text-transform: uppercase;
+    white-space: no-wrap;
+    text-overflow: ellipsis;
+    padding: 5px;
+}
+
+main{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    
+}
