@@ -1,0 +1,39 @@
+<?php 
+require './templates/header.phtml' ;
+//require './app/controllers/SeasonController.php';
+//require './app/controllers/ChapterController.php';
+//seasonNumber, relaseYear, director, recordingCity, recordingGenre
+//season_id, name, description
+?>
+
+<form  id = "formSeasons"action="addSeason" method ="post">
+    <label>Season Number</label>
+    <input type="number" name = "seasonNumber">
+    <label>release Year</label>
+    <input type="number" name = "releaseYear">
+    <label>Director</label>
+    <input type="text" name = "director">
+    <label>Recording City</label>
+    <input type="text" name="recordingCity">
+    <label>Category Genre</label>
+    <input type="text" name "categoryGenre">
+    
+    <button type = "submit">Add season</button>
+</form>
+
+
+<form id = "formChapter"action="addChapter" method="post">
+    <label>Add season</label>
+    <select name="selectSeason">
+        <?php foreach($seasons as $season){ ?>
+    <option value="season">Temporada <?= $season->seasonNumber ?></option>
+           <?php } ?>
+    </select>
+    <label>Name</label>
+    <input type="text" name= "name">
+    <label>description</label>
+    <input type="text" name = "description">
+    
+    <button type= "submit">Add chapter</button>
+</form>
+<?php require './templates/footer.phtml'?>

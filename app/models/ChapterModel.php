@@ -34,4 +34,7 @@ class ChapterModel
         $query = $this->db->prepare("DELETE FROM chapters WHERE $chapter_id");
         $query->execute();
     }
+
+    
 }
+
