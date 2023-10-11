@@ -1,39 +1,86 @@
 <?php 
 require './templates/header.phtml' ;
-//require './app/controllers/SeasonController.php';
-//require './app/controllers/ChapterController.php';
 //seasonNumber, relaseYear, director, recordingCity, recordingGenre
 //season_id, name, description
 ?>
-
-<form  id = "formSeasons"action="addSeason" method ="post">
-    <label>Season Number</label>
-    <input type="number" name = "seasonNumber">
-    <label>release Year</label>
-    <input type="number" name = "releaseYear">
-    <label>Director</label>
-    <input type="text" name = "director">
-    <label>Recording City</label>
-    <input type="text" name="recordingCity">
-    <label>Category Genre</label>
-    <input type="text" name "categoryGenre">
-    
-    <button type = "submit">Add season</button>
+<div class="forms-editorSection">
+<form  id = "formSeasons"action="addSeason" method ="POST" class="my-4">
+    <div class="row">
+        <div class="col-9">
+            <div class="form-group">
+                <label>Season Number</label>
+                <input required type="number" name = "seasonNumber" class="form-control">
+            </div>
+        </div>
+        <div class= "col-3">
+            <div class= "form-group">
+                <label>release Year</label>
+                <input required type="number" name = "releaseYear" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class= "col-5">
+            <div class="form-group">
+                <label>Director</label>
+                <input required type="text" name = "director" class="form-control">
+            </div>
+        </div>
+        <div class= "col-7">
+            <div class="form-group">
+                <label>Recording City</label>
+                <input required type="text" name="recordingCity" class="form-control">
+            </div>
+        </div>
+    </div>    
+        <div class="col-12">
+            <div class="form-group">
+                <label>Category Genre</label>
+                <input required type="text" name= "categoryGenre" class="form-control">
+            </div>
+        </div>
+    <button type = "submit" class="btn btn-primary mt-2">Add season</button>
 </form>
 
 
-<form id = "formChapter"action="addChapter" method="post">
-    <label>Add season</label>
-    <select name="selectSeason">
-        <?php foreach($seasons as $season){ ?>
-    <option value="season">Temporada <?= $season->seasonNumber ?></option>
-           <?php } ?>
-    </select>
-    <label>Name</label>
-    <input type="text" name= "name">
-    <label>description</label>
-    <input type="text" name = "description">
-    
-    <button type= "submit">Add chapter</button>
+
+<form id = "formChapter"action="addChapter" method="POST">
+    <div class="form-group">
+        <label>Add season</label>
+        <select required name="selectSeason" class="form-control">
+            <?php foreach($seasons as $season): ?>
+            <option value="season">Season <?= $season->seasonNumber ?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input required type="text" name= "name" class="form-control">
+    </div>
+    <div class="form-group">
+            <label>Description</label>
+            <textarea required name = "description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type= "submit" class="btn btn-primary mt-2">Add chapter</button>
 </form>
+</div>
+<ul class="list-group">
+    <?php foreach($seasons as $season): ?>
+        <li class="list-group-item item-season">
+            <div>
+                <b><?= $season->seasonNumber?></b>| <?=$season->director?> | (Release Year: <?= $season->releaseYear ?>)
+            </div>
+            <div class= "actions">
+            <?php /* if(!$task->finalizada): ?> 
+                <a href="finalizar/<?= $task->id ?>" type="button" class='btn btn-success ml-auto'>Finalizar</a> 
+            <?php endif */?>
+            <a href="delete/<?= $season->season_id ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
+            </div>
+        </li>
+    <?php endforeach?>
+</ul>
+
+
+
 <?php require './templates/footer.phtml'?>

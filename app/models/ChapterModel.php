@@ -23,7 +23,7 @@ class ChapterModel
 
     function addChapter($name, $description, $season_id)
     {
-        $query = $this->db->prepare("INSERT INTO chapters(name, description, season_id) VALUES (?,?,?)");
+        $query = $this->db->prepare('INSERT INTO chapters(name, description, season_id) VALUES (?,?,?)');
         $query->execute([$name, $description, $season_id]);
         return $this->db->lastInsertId();
     }
@@ -31,7 +31,7 @@ class ChapterModel
     function deleteChapter($chapter_id)
     {
         //ver
-        $query = $this->db->prepare("DELETE FROM chapters WHERE $chapter_id");
+        $query = $this->db->prepare('DELETE FROM chapters WHERE $chapter_id');
         $query->execute();
     }
 
