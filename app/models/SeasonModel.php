@@ -20,10 +20,9 @@ class SeasonModel{
         return $this->db->lastInsertId();
     }
 
-    function deleteSeason($season_id)
-    {
+    function deleteSeason($season_id){
         //ver
-        $query = $this->db->prepare("DELETE FROM chapters WHERE $season_id");
-        $query->execute();
+        $query = $this->db->prepare('DELETE FROM chapters WHERE id=?');
+        $query->execute([$season_id]);
     }
 }

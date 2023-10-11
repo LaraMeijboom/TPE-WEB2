@@ -19,23 +19,33 @@
 
   
   switch ($params[0]) {
-      case 'home':
-        $seasonController->showSeasons();
+    case 'home':
+      $seasonController->showSeasons();
+    break;
+    case'season' : 
+      $chapterController->ShowChapterOfSeason($params[1]);
+    break;
+    case 'login' :
+      $authController->showLogIn();
+    break;
+    case 'auth':
+      $authController->auth();
+    break;
+    case 'editorSection': 
+      $seasonController->seasonsAsEditor();
+    break;
+    case 'addSeason': 
+      $seasonController->addSeason();
+    break;
+    case 'showSeasons':
+      $seasonController->showSeasons();
       break;
-      case'season' : 
-        $chapterController->ShowChapterOfSeason($params[1]);
+    case 'delete':
+      $seasonController->removeSeason($params[1]);
       break;
-      case 'login' :
-        $authController->showLogIn();
+    case 'logout':
+      $authController->logout();
       break;
-      case 'auth':
-        $authController->auth();
-      break;
-      case 'editorSection': 
-        $editorSectionView = new EditorView();
-        $editorSectionView->showEditorSection();
-      break;
-      
-    }
+  }
   
   ?>

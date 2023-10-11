@@ -39,6 +39,21 @@ class AuthController {
             $this->authView->showLogin('Usuario inválido');
         }
     }
+    function validateUser()
+    {
+        $name = $_POST['name'];
+        $password = $_POST['password'];
+        $user = $this->authModel->getByName($name);
+        if ($name && (password_verify($password, $user->password))) {
+            session_start();
+            $_SESSION['USER_NAME'] = $user->name;
+            $_SESSION['USER_ID'] = $user->user_id;
+            $_SESSION['IS_LOGGED'] = true;
+            header("Location: " . BASE_URL);
+        } else {
+            $this->authView->showLogin();
+        }
+    }
 
     public function logout() {
         AuthHelper::logout();

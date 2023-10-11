@@ -60,3 +60,16 @@ main{
     gap: 10px;
     
 }
+.forms-editorSection{
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.item-season {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
