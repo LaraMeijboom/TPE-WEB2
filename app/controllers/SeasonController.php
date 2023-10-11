@@ -9,7 +9,7 @@ class SeasonController{
     private $editorView;
 
     function __construct(){
-       AuthHelper::verify();
+       //AuthHelper::verify();
 
         $this->seasonModel = new SeasonModel();
         $this->seasonView = new SeasonView();
@@ -51,7 +51,7 @@ class SeasonController{
 
     }
 
-    function removeSeason($id){
+    function deleteSeason($id){
         $this->seasonModel->deleteSeason($id);
         header('Location: ' . BASE_URL . '/editorSection');
     }

@@ -40,11 +40,12 @@
     case 'showSeasons':
       $seasonController->showSeasons();
       break;
-    case 'delete':
-      $seasonController->removeSeason($params[1]);
+    case 'deleteSeason':
+      $seasonController->deleteSeason($params[1]);
       break;
     case 'logout':
-      
-  }
+    $authController->logout();
+    break; 
+ }
   
   ?>

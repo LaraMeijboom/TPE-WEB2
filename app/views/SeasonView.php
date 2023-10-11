@@ -7,10 +7,7 @@ class SeasonView{
         
     }
 
-    function showSeasonsAsEditor($seasons){
-        $count = count($seasons);
-        require './templates/editorSection.phtml';
-    }
+  
 
     public function showError($error){
         require './templates/error.phtml';
