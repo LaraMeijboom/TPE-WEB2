@@ -9,8 +9,6 @@ class SeasonController{
     private $editorView;
 
     function __construct(){
-       //AuthHelper::verify();
-
         $this->seasonModel = new SeasonModel();
         $this->seasonView = new SeasonView();
         $this->editorView = new EditorView();
@@ -44,18 +42,7 @@ class SeasonController{
         if($id){
             header('Location:' . BASE_URL . '/editorSection');
         }
-        else{
-           // $this->seasonView->showError("Error al insertar la temp")
-           echo "error";
-        }
 
     }
-
-    function deleteSeason($id){
-        $this->seasonModel->deleteSeason($id);
-        header('Location: ' . BASE_URL . '/editorSection');
-    }
-
-
 
 }

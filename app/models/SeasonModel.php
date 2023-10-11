@@ -21,8 +21,8 @@ class SeasonModel{
 
     function deleteSeason($season_id){
         //ver
-        $query = $this->db->prepare('DELETE FROM seasons WHERE id = ?');
-        $query->execute([$season_id]);
+        $query = $this->db->prepare("DELETE FROM chapters WHERE $season_id");
+        $query->execute();
     }
     
 }
