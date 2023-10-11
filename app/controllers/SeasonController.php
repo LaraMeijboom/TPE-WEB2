@@ -9,12 +9,11 @@ class SeasonController{
     private $editorView;
 
     function __construct(){
-       AuthHelper::verify();
+       //AuthHelper::verify();
         $this->seasonModel = new SeasonModel();
         $this->seasonView = new SeasonView();
         $this->editorView = new EditorView();
     }
-
 
     function showSeasons(){
         $seasons = $this->seasonModel->getSeasons();
