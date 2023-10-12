@@ -2,7 +2,7 @@
   require_once "./app/controllers/SeasonController.php";
   require_once "./app/controllers/ChapterController.php";
   require_once "./app/controllers/AuthController.php";
-  require_once "./app/views/editorView.php";
+  require_once "./app/controllers/EditorController.php";
 
   define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
@@ -16,7 +16,7 @@
   $seasonController = new SeasonController();
   $chapterController = new ChapterController();
   $authController = new AuthController();
-
+  $editorController = new EditorController();
   
   switch ($params[0]) {
     case 'home':
@@ -26,22 +26,22 @@
       $chapterController->ShowChapterOfSeason($params[1]);
     break;
     case 'login' :
-      $authController->showLogIn();
+      $authController->showFormLogin();
     break;
-    case 'auth':
-      $authController->auth();
+    case 'validate':
+      $authController->validateUser();
     break;
     case 'editorSection': 
-      $seasonController->seasonsAsEditor();
+      $editorController->itemsAsEditor();
     break;
     case 'addSeason': 
-      $seasonController->addSeason();
+      $editorController->addSeason();
     break;
     case 'showSeasons':
       $seasonController->showSeasons();
       break;
     case 'delete':
-      $seasonController->removeSeason($params[1]);
+      $editorController->removeSeason($params[1]);
       break;
     case 'logout':
       $authController->logout();

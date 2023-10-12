@@ -25,4 +25,6 @@ class SeasonModel{
         $query = $this->db->prepare('DELETE FROM chapters WHERE id=?');
         $query->execute([$season_id]);
     }
+
+    
 }

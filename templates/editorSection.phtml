@@ -42,8 +42,6 @@ require './templates/header.phtml' ;
     <button type = "submit" class="btn btn-primary mt-2">Add season</button>
 </form>
 
-
-
 <form id = "formChapter"action="addChapter" method="POST">
     <div class="form-group">
         <label>Add season</label>
@@ -72,15 +70,21 @@ require './templates/header.phtml' ;
                 <b><?= $season->seasonNumber?></b>| <?=$season->director?> | (Release Year: <?= $season->releaseYear ?>)
             </div>
             <div class= "actions">
-            <?php /* if(!$task->finalizada): ?> 
-                <a href="finalizar/<?= $task->id ?>" type="button" class='btn btn-success ml-auto'>Finalizar</a> 
-            <?php endif */?>
             <a href="delete/<?= $season->season_id ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
             </div>
         </li>
     <?php endforeach?>
 </ul>
-
-
+<ul class="list-chapters">
+    <?php foreach($chapters as $chapter) : ?>
+        <li class="list-group-item item-season">
+        <div>
+        <b><?= $chapter->name ?> || <?= $chapter->description ?> || Temporada: <?= $chapter->season_id_fk?> </b>
+        <div class= "actions">
+            <a href="delete/<?= $season->season_id ?>" type="button" class='btn btn-danger ml-auto'>Borrar</a>
+            </div>
+            </li>
+    <?php endforeach ?>
+</ul>
 
 <?php require './templates/footer.phtml'?>

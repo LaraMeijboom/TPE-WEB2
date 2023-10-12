@@ -1,20 +1,21 @@
 <?php
 include_once './app/models/ChapterModel.php';
 include_once './app/views/ChapterView.php';
+include_once './app/helpers/AuthHelper.php';
 
 class ChapterController
 {
     private $chapterView;
     private $chapterModel;
-
+    private $authHelper;
     function __construct()
     {
+        $this->authHelper = new AuthHelper();
         $this->chapterModel = new ChapterModel();
         $this->chapterView = new ChapterView();
     }
 
-    function showChapters()
-    {
+    function showChapters(){
         $chapters = $this->chapterModel->getChapters();
         $this->chapterView->showChapters($chapters);
     }

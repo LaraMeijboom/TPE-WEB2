@@ -1,7 +1,8 @@
 <?php
 class EditorView{
-    public function showSeasonsAsEditor($seasons){
+     function showItemsAsEditor($seasons, $chapters){
         $count = count($seasons);
+        $count = count($chapters);
         require './templates/editorSection.phtml';
     }
 }
