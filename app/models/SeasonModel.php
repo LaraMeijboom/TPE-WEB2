@@ -1,10 +1,10 @@
-<?php
-
+<?php 
+require_once './database/config.php';
 class SeasonModel{
-    private $db;
+    protected $db;
 
     function __construct(){
-        $this->db = new PDO('mysql:host=localhost;dbname=bd_app;charset=utf8', 'root');
+        $this->db = new PDO("mysql:host=". MYSQL_HOST .";dbname=". MYSQL_DB . ";charset=utf8", MYSQL_USER, MYSQL_PASS);
     }
 
     function getSeasons(){
@@ -20,9 +20,19 @@ class SeasonModel{
     }
 
     function deleteSeason($season_id){
-        //ver
-        $query = $this->db->prepare("DELETE FROM chapters WHERE $season_id");
-        $query->execute();
+        $query = $this->db->prepare('DELETE FROM seasons WHERE season_id= ?');
+        $query->execute([$season_id]);
+        
     }
-    
+    function editSeason($seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre, $season_id){
+        $query = $this->db->prepare('UPDATE seasons SET `seasonNumber`= ?, `releaseYear`= ?, `director`= ?, `recordingCity`= ?, `categoryGenre`=? WHERE `season_id `=?');
+        $query->execute([$seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre, $season_id]);
+        
+        return $this->db->lastInsertId();
+    }
 }
+
+
+    
+    
+?>

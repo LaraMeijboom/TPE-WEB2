@@ -1,29 +1,23 @@
 <?php
 
 class AuthHelper {
-
-    public static function init() {
-        if (session_status() != PHP_SESSION_ACTIVE) {
-            session_start();
+    function __construct(){
+        if (strnatcasecmp(phpversion(), '5.4.0') >= 0) {
+            if (session_status() == PHP_SESSION_NONE) {
+                session_start();
+            }
+        } else {
+            if (session_id() == '') {
+                session_start();
+            }
         }
     }
-
-    public static function login($user) {
-        AuthHelper::init();
-        $_SESSION['USER_ID'] = $user->user_id;
-        $_SESSION['USER_NAME'] = $user->name; 
-    }
-
-    public static function logout() {
-        AuthHelper::init();
-        session_destroy();
-    }
-
-    public static function verify() {
-        AuthHelper::init();
-        if (!isset($_SESSION['USER_ID'])) {
-            header('Location: ' . BASE_URL . '/login');
-            die();
+    public function checkLoggedIn(){
+        if (!isset($_SESSION['IS_LOGGED'])) {
+        die();
         }
     }
 }
+
+
+    
