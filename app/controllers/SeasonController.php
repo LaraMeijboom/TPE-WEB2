@@ -3,6 +3,7 @@ include_once './app/models/SeasonModel.php';
 include_once './app/views/SeasonView.php';
 include_once './app/helpers/AuthHelper.php';
 
+
 class SeasonController{
     private $authHelper;
     private $seasonModel;

@@ -63,8 +63,8 @@ function addChapter(){
         $this->showError->ShowError("Error inserting chapter, complete the form");
         die();
     }
-    $ide = $this->chapterModel->addChapter($name, $description, $season_id_fk);
-    if($ide){
+    $id = $this->chapterModel->addChapter($name, $description, $season_id_fk);
+    if($id){
         header('Location:' . BASE_URL . 'editorSection');
     }
     else{
@@ -88,9 +88,7 @@ function deleteChapter($id) {
             if($contador == 0){
                 $this->chapterModel->deleteChapter($id);
                 header('Location:' . BASE_URL . 'editorSection');
-            } else{
-                $this->showError->showError("Para eliminar la categoria debe estar vacia");
-            }
+            } 
         }
     }
 }

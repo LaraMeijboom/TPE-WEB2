@@ -47,7 +47,7 @@ require './templates/header.phtml';
         <label>Add season</label>
         <select required name="season_id_fk" class="form-control">
             <?php foreach($seasons as $season): ?>
-            <option value="season_id"><?= $season->season_id?></option>
+            <option value="season_id_fk"><?= $season->season_id?></option>
             <?php endforeach ?>
         </select>
     </div>
