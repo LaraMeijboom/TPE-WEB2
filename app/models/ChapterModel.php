@@ -1,10 +1,6 @@
-<?php require_once './database/config.php';
-class ChapterModel {
-    protected $db;
-    function __construct(){
-      $this->db = new PDO("mysql:host=".MYSQL_HOST .";dbname=".MYSQL_DB.";charset=utf8", MYSQL_USER, MYSQL_PASS);
-      
-    }
+<?php 
+require_once './app/models/Model.php';
+class ChapterModel extends Model {
     function getChapterOfSeason($season_id_fk){
         $query = $this->db->prepare('SELECT * FROM chapters WHERE season_id_fk = ?');
         $query->execute([$season_id_fk]);
