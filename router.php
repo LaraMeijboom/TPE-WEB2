@@ -47,5 +47,4 @@
       $authController->logout();
       break;
   }
-  
   ?>

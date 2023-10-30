@@ -7,10 +7,8 @@ class ChapterController
 {
     private $chapterView;
     private $chapterModel;
-    private $authHelper;
     function __construct()
     {
-        $this->authHelper = new AuthHelper();
         $this->chapterModel = new ChapterModel();
         $this->chapterView = new ChapterView();
     }
