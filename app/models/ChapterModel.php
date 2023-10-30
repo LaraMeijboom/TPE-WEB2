@@ -1,40 +1,32 @@
-<?php
-class ChapterModel
-{
-    private $db;
-
-    function __construct()
-    {
-        $this->db = new PDO('mysql:host=localhost;dbname=bd_app;charset=utf8', 'root');
-    }
-
-    function getChapterOfSeason($season_id)
-    {
+<?php 
+require_once './app/models/Model.php';
+class ChapterModel extends Model {
+    function getChapterOfSeason($season_id_fk){
         $query = $this->db->prepare('SELECT * FROM chapters WHERE season_id_fk = ?');
-        $query->execute([$season_id]);
+        $query->execute([$season_id_fk]);
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
-    function getChapters()
-    {
+    function getChapters(){
         $query = $this->db->prepare('SELECT * FROM chapters');
         $query->execute();
         return $query->fetchAll(PDO::FETCH_OBJ);
     }
 
-    function addChapter($name, $description, $season_id)
-    {
-        $query = $this->db->prepare("INSERT INTO chapters(name, description, season_id) VALUES (?,?,?)");
-        $query->execute([$name, $description, $season_id]);
+    function addChapter($name, $description, $season_id_fk){
+        $query = $this->db->prepare('INSERT INTO chapters (`chapter_id`,`name`,`description`,`season_id_fk`) VALUES (NULL,?,?,?)');
+        $query->execute([$name, $description, $season_id_fk]); 
         return $this->db->lastInsertId();
     }
 
-    function deleteChapter($chapter_id)
-    {
-        //ver
-        $query = $this->db->prepare("DELETE FROM chapters WHERE $chapter_id");
-        $query->execute();
+    function deleteChapter($chapter_id){
+        $query = $this->db->prepare('DELETE FROM chapters WHERE chapter_id= ?');
+        $query->execute([$chapter_id]);
     }
 
-    
+    function updateChapter($name, $description, $season_id_fk, $chapter_id) {
+        $query = $this->db->prepare('UPDATE chapters SET name = ?,  description = ?, season_id_fk  = ? WHERE chapter_id = ?');
+        $query->execute([$name, $description, $season_id_fk, $chapter_id]);
+        return $query;
+    }
 }
-
+?>

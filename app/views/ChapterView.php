@@ -12,3 +12,4 @@ class ChapterView{
         require './templates/chaptersList.phtml';
     }
 }
+

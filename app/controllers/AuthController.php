@@ -4,8 +4,12 @@ require_once './app/models/AuthModel.php';
 class AuthController {
     private $authView;
     private $authModel;
+<<<<<<< HEAD
     function __construct()
     {
+=======
+    function __construct(){
+>>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
         $this->authView = new AuthView();
         $this->authModel = new UserModel();
         if (strnatcasecmp(phpversion(), '5.4.0') >= 0 && session_status() == PHP_SESSION_NONE) {
