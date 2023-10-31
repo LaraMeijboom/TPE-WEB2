@@ -1,0 +1,64 @@
+<?php 
+
+//AGREGARLE UN IF DE QUE NO PUEDE AGG UNA TEMPORADA CON EL MISMO SEASONNUMBER 
+//MANEJAR LOS POSIBLES ERRORES DE CARGA 
+//CAMBIAR LA REDIRECCION 
+require './templates/header.phtml';
+?>
+<div class="forms-editorSection">
+<form  action="addSeason" method ="POST" class="my-4">
+    <div class="row">
+        <div class="col-9">
+            <div class="form-group">
+                <label>Season Number</label>
+                <input required type="number" name = "seasonNumber" class="form-control">
+            </div>
+        </div>
+        <div class= "col-3">
+            <div class= "form-group">
+                <label>Release Year</label>
+                <input required type="number" name = "releaseYear" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class= "col-5">
+            <div class="form-group">
+                <label>Director</label>
+                <input required type="text" name = "director" class="form-control">
+            </div>
+        </div>
+        <div class= "col-7">
+            <div class="form-group">
+                <label>Recording City</label>
+                <input required type="text" name="recordingCity" class="form-control">
+            </div>
+        </div>
+    </div>    
+        <div class="col-12">
+            <div class="form-group">
+                <label>Category Genre</label>
+                <input required type="text" name= "categoryGenre" class="form-control">
+            </div>
+        </div>
+    <button type = "submit" class="btn btn-primary mt-2">Add season</button>
+</form>
+
+
+<ul class="list-group">
+    <?php foreach($seasons as $season): ?>
+        <li class="list-group-item item-form">
+            <div>
+                <p><?= $season->seasonNumber?>| <?=$season->director?> | <?=$season->recordingCity ?> | <?=$season->categoryGenre?> | (Release Year: <?= $season->releaseYear ?>)</p>
+            </div>
+            <div class= "actions">
+                <a href="deleteSeason/<?=$season->season_id?>" type="button" class='btn btn-danger ml-auto'>Delete</a>
+            </div>
+            <div class= "actions">
+                <a href="showEditSeason/<?=$season->season_id?>" type="button" class='btn btn-danger ml-auto'>Edit</a>
+            </div>
+
+        </li>
+    <?php endforeach?>
+</ul>
+<?php require './templates/footer.phtml';?>

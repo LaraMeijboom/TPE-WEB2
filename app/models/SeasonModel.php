@@ -1,33 +1,42 @@
-<?php 
-//require_once './database/config.php';
-require_once './app/models/Model.php';
+<?php
+require_once './app/models/model.php';
 class SeasonModel extends Model{
-    function getSeasons(){
-        $query = $this->db->prepare('SELECT * FROM seasons');
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
 
-    function addSeason($seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre){
-        $query = $this->db->prepare('INSERT INTO seasons (seasonNumber, releaseYear, director, recordingCity, categoryGenre) VALUES (?,?,?,?,?)');
-        $query->execute([$seasonNumber, $releaseYear, $director, $recordingCity, $categoryGenre]);
+    function getAllSeasons(){
+        //fijarme si este lo uso , de no ser asi borrarlo
+        $query = $this->db->prepare('SELECT * FROM season');
+        $query->execute();
+        $seasons = $query->fetchAll(PDO::FETCH_OBJ);
+        return $seasons; 
+    }
+    function getAllChapterOrdenByNumber(){
+        $query = $this->db->prepare('SELECT * FROM `season` ORDER BY `season`.`seasonNumber` ASC');
+        $query->execute();
+        $seasons = $query->fetchAll(PDO::FETCH_OBJ);
+        return $seasons; 
+    }
+    function getSeasonId($season_id){
+        $query = $this->db->prepare('SELECT * FROM season WHERE season_id = ?');
+        $query->execute([$season_id]);
+
+        $season= $query->fetch(PDO::FETCH_OBJ);
+        return $season; 
+    }
+    
+    //TENDRIA QUE AGREGAR UN CHECK LOGIN ACA EN EL MODEL 
+    function insertSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre){
+        $query = $this->db->prepare('INSERT INTO season (seasonNumber,releaseYear, director, recordingCity,categoryGenre) VALUES (?,?,?,?,?)');
+        $query->execute([$seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre]);
         return $this->db->lastInsertId();
     }
-
-    function deleteSeason($season_id){
-        $query = $this->db->prepare('DELETE FROM seasons WHERE season_id= ?');
-        $query->execute([$season_id]);
-        
+    function deleteSeason($id){
+        $query = $this->db->prepare('DELETE FROM season WHERE season_id = ?');
+        $query->execute([$id]);
     }
-
-<<<<<<< HEAD
+    function updateSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre, $id){
+        $query = $this->db->prepare('UPDATE season SET seasonNumber = ?, releaseYear = ?, director = ?, recordingCity = ?, categoryGenre = ? WHERE season_id = ?');
+        $query->execute([$seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre, $id]);
+        return $query; 
+    }
     
 }
-=======
-}
-
-
-    
-    
-?>
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963

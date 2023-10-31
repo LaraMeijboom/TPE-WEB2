@@ -1,0 +1,23 @@
+<?php require_once 'templates/header.phtml'; ?>
+<ul>
+    <?php
+    $contador = 0; 
+    foreach ($chapters as $chapter):
+        if($season_id == null || $season_id == $chapter->season_id): ?>
+        <li>
+        <p><?= $chapter->chapterNumber ?> | Name: <?=$chapter->name?> | Description: <?=$chapter->description?></p>
+        </li> 
+    <?php
+    $contador++; 
+        endif;
+    endforeach;
+    if($contador == 0): ?>
+            <div class='alert alert-danger' role='alert'>
+            <p>Por el momento no hay cap en la temp</p>
+        </div> 
+    <?php endif; ?>
+    
+</ul>
+
+
+<?php require_once 'templates/footer.phtml'; ?>

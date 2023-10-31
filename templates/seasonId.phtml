@@ -1,0 +1,17 @@
+<?php 
+//seasonNumber, releaseYear, director, recordingCity, categoryGenre
+require './templates/header.phtml'; ?>
+<ul>
+   
+        <li>
+            <div>
+                <p><?=$season->seasonNumber?> | Release Year: <?=$season->releaseYear?>
+                 | Director: <?=$season->director?> | Recording City: <?=$season->recordingCity?> |
+                 Category Genre: <?=$season->categoryGenre?> </p>
+            </div>
+           
+        </li>
+   
+</ul>
+
+<?php require './templates/footer.phtml'; ?>

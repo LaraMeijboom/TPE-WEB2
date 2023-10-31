@@ -1,9 +1,10 @@
 <?php require 'templates/header.phtml' ?>
+
 <div class="mt-5 w-25 mx-auto">
-    <form method="POST" action="validate">
+    <form method="POST" action="auth">
         <div class="form-group">
-            <label for="name">User name</label>
-            <input type="text" required class="form-control" id="name" name="name" aria-describedby="emailHelp">
+            <label>Name</label>
+            <input type="text" required class="form-control"  name="name">
         </div>
         <div class="form-group">
             <label for="password">Password</label>
@@ -15,7 +16,6 @@
                 <?= $error ?>
             </div> 
         <?php endif ?>
-       
         <button type="submit" class="btn btn-primary mt-3">Entrar</button>
     </form>
 </div>

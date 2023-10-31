@@ -1,0 +1,21 @@
+<?php require './templates/header.phtml';?>
+<form action="editChapter/<?=$chapter_id?>" method="POST">
+
+    <div class="form-group">
+        <label>Number</label>
+        <input required type="number" name= "chapterNumber" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input required type="text" name= "name" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea required name = "description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type= "submit" class="btn btn-primary mt-2">Edit chapter</button>
+</form>
+</div>
+
+<?php require './templates/footer.phtml'?>

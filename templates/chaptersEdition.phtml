@@ -1,0 +1,43 @@
+<?php require './templates/header.phtml';?>
+<form action="addChapter" method="POST">
+    <div class="form-group">
+        <label>Select season</label>
+        <select required name="season_id" class="form-control">
+            <?php foreach($seasons as $season): ?>
+            <option value="<?=$season->season_id?>"><?= $season->seasonNumber?></option>
+            <?php endforeach ?>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Number</label>
+        <input required type="number" name= "chapterNumber" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input required type="text" name= "name" class="form-control">
+    </div>
+    <div class="form-group">
+            <label>Description</label>
+            <textarea required name = "description" class="form-control" rows="3"></textarea>
+    </div>
+
+    <button type= "submit" class="btn btn-primary mt-2">Add chapter</button>
+</form>
+</div>
+
+
+<ul class="list-group">
+    <?php foreach($chapters as $chapter) : ?>
+        <li class="list-group-item item-form">
+        <div>
+            <p><?= $chapter->chapterNumber?> | <?= $chapter->name ?> |  <?=$chapter->description?></p>
+        </div>
+        <div class= "actions">
+            <a href="deleteChapter/<?= $chapter->chapter_id ?>" type="button" class='btn btn-danger ml-auto'>Delete</a>
+            <a href="showEditChapter/<?= $chapter->chapter_id?>" type="button" class='btn btn-danger ml-auto'>Edit</a>
+        </div>
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<?php require './templates/footer.phtml'?>

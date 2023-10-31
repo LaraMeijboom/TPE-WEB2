@@ -1,38 +1,88 @@
 <?php
-include_once './app/models/SeasonModel.php';
-include_once './app/views/SeasonView.php';
-include_once './app/helpers/AuthHelper.php';
-<<<<<<< HEAD
-=======
+require_once './app/models/seasonModel.php';
+require_once './app/models/chapterModel.php';
+require_once './app/views/seasonView.php';
+require_once './app/helpers/authHelper.php'; 
 
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
-
-class SeasonController{
-    private $authHelper;
-    private $seasonModel;
-    private $seasonView;
-
+class SeasonsController{
+    private $seasonModel; 
+    private $chapterModel; 
+    private $view;
+    private $authHelper; 
     function __construct(){
-<<<<<<< HEAD
-       //AuthHelper::verify();
-=======
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
-       $this->authHelper = new AuthHelper();
         $this->seasonModel = new SeasonModel();
-        $this->seasonView = new SeasonView();
+        $this->chapterModel = new ChapterModel();
+        $this->view = new SeasonView(); 
+        $this->authHelper = new AuthHelper(); 
     }
+
 
     function showSeasons(){
-        $seasons = $this->seasonModel->getSeasons();
-        $this->seasonView->showSeasons($seasons);
+        $seasons = $this->seasonModel->getAllChapterOrdenByNumber();
+        $this->view->showAllSeasons($seasons);
     }
-<<<<<<< HEAD
-//seasonNumber, relaseYear, director, recordingCity, categoryGenre
+
+    function chapterOfSeason($season_id){
+        $season = $this->seasonModel->getSeasonId($season_id);
+        $this->view->showSeasonId($season);  
+
+    }
+    function showSeasonEditor(){
+        $this->authHelper->checkLoggedIn();
+        $seasons = $this->seasonModel->getAllChapterOrdenByNumber(); 
+        $this->view->showSeasonEditor($seasons); 
+    }
+
+    function addSeason(){
+        $this->authHelper->checkLoggedIn();
+        $seasonNumber = $_POST['seasonNumber'];
+        $releaseYear = $_POST['releaseYear'];
+        $director = $_POST['director'];
+        $recordingCity = $_POST['recordingCity'];
+        $categoryGenre = $_POST['categoryGenre'];
+
+        if(empty($seasonNumber) ||empty($releaseYear ) ||empty($director) ||empty($recordingCity) ||empty($categoryGenre)){
+            $this->view->showError("completar todos los campos");
+            die();
+        }
+        $id = $this->seasonModel->insertSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre);
+        if($id){ 
+            header('Location:' . BASE_URL . 'seasonsEdition');
+        }
+        else{
+            $this->view->showError("Error al insertar Season");
+        }
+    }
+
+    function removeSeason($id){
+        $this->authHelper->checkLoggedIn();
+        $this->seasonModel->deleteSeason($id);
+        header('Location:'. BASE_URL . 'seasonsEdition');
+    }
+
+    function showEditSeason($season_id){
+        $this->authHelper->checkLoggedIn();
+        $this->view->showEditSeason($season_id);
+    }
+   
+    function editSeason($id){
+        $this->authHelper->checkLoggedIn();
+        $seasonNumber = $_POST['seasonNumber'];
+        $releaseYear = $_POST['releaseYear'];
+        $director = $_POST['director'];
+        $recordingCity = $_POST['recordingCity'];
+        $categoryGenre = $_POST['categoryGenre'];
+
+        if(empty($seasonNumber) ||empty($releaseYear ) ||empty($director) ||empty($recordingCity) ||empty($categoryGenre)){
+            $this->view->showError("completar todos los campos");
+            die();
+        }
+        $id = $this->seasonModel->updateSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre, $id);
+        if($id){
+            header('Location:' . BASE_URL . 'seasonsEdition');
+        }
+        else{
+            $this->view->showError("Error al insertar Season");
+        }
+    }
 }
-=======
-
-
-}
-
-
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963

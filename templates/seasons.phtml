@@ -1,0 +1,18 @@
+<?php 
+require './templates/header.phtml'; ?>
+<ul>
+    <?php foreach($seasons as $season): ?>
+        <li>
+            <div>
+                <p><?=$season->seasonNumber?> | Release Year: <?=$season->releaseYear?>
+                 | Director: <?=$season->director?> | Recording City: <?=$season->recordingCity?> |
+                 Category Genre: <?=$season->categoryGenre?> </p>
+            </div>
+            <div class="actions">
+                <a href="deployChaptersOfSeasonID/<?=$season->season_id?>" type="button" class='btn btn-danger ml-auto'>Chapters</a>
+            </div> 
+        </li>
+    <?php endforeach ?>
+</ul>
+
+<?php require './templates/footer.phtml'; ?>

@@ -1,32 +1,41 @@
-<?php 
-require_once './app/models/Model.php';
-class ChapterModel extends Model {
-    function getChapterOfSeason($season_id_fk){
-        $query = $this->db->prepare('SELECT * FROM chapters WHERE season_id_fk = ?');
-        $query->execute([$season_id_fk]);
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
-    function getChapters(){
-        $query = $this->db->prepare('SELECT * FROM chapters');
-        $query->execute();
-        return $query->fetchAll(PDO::FETCH_OBJ);
-    }
+<?php
+require_once './app/models/model.php';
+class ChapterModel extends Model{
 
-    function addChapter($name, $description, $season_id_fk){
-        $query = $this->db->prepare('INSERT INTO chapters (`chapter_id`,`name`,`description`,`season_id_fk`) VALUES (NULL,?,?,?)');
-        $query->execute([$name, $description, $season_id_fk]); 
+    function getChaptersOfSeasonID($season_id){
+        $query = $this->db->prepare('SELECT * FROM chapter WHERE season_id = ?');
+        $query->execute([$season_id]);
+
+        $chapters = $query->fetch(PDO::FETCH_OBJ);
+        return $chapters;
+    }
+    function getAllChapter(){
+        //si no se usa borrarlo
+        $query = $this->db->prepare('SELECT * FROM chapter'); 
+        $query->execute();
+
+        $chapters = $query->fetchAll(PDO::FETCH_OBJ); 
+        return $chapters;
+    }
+    function getAllChapterOrdenByNumber(){
+        $query = $this->db->prepare('SELECT * FROM `chapter` ORDER BY `chapter`.`chapterNumber` ASC');
+        $query->execute();
+        $chapters = $query->fetchAll(PDO::FETCH_OBJ);
+        return $chapters; 
+    }
+    function insertChapter($chapterNumber, $name, $description,$season_id){
+        $query = $this->db->prepare('INSERT INTO chapter (chapterNumber, name, description,season_id) VALUES (?,?,?,?)');
+        $query->execute([$chapterNumber, $name, $description,$season_id]);
         return $this->db->lastInsertId();
     }
 
-    function deleteChapter($chapter_id){
-        $query = $this->db->prepare('DELETE FROM chapters WHERE chapter_id= ?');
-        $query->execute([$chapter_id]);
+    function deleteChapter($id){
+        $query = $this->db->prepare('DELETE FROM chapter WHERE chapter_id = ?');
+        $query->execute([$id]);
     }
-
-    function updateChapter($name, $description, $season_id_fk, $chapter_id) {
-        $query = $this->db->prepare('UPDATE chapters SET name = ?,  description = ?, season_id_fk  = ? WHERE chapter_id = ?');
-        $query->execute([$name, $description, $season_id_fk, $chapter_id]);
-        return $query;
+    function updateChapter($chapterNumber, $name, $description, $id){
+        $query = $this->db->prepare('UPDATE chapter SET chapterNumber = ?, name = ?, description = ?  WHERE chapter_id = ?');
+        $query->execute([$chapterNumber, $name, $description, $id]);
+        return $query; 
     }
 }
-?>

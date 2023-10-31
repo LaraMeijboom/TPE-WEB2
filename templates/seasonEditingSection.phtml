@@ -1,0 +1,41 @@
+<?php require './templates/header.phtml'; ?>
+<div class="forms-editorSection">
+<form  action="editSeason/<?=$season_id?>" method ="POST" class="my-4">
+    <div class="row">
+        <div class="col-9">
+            <div class="form-group">
+                <label>Season Number</label>
+                <input required type="number" name = "seasonNumber" class="form-control">
+            </div>
+        </div>
+        <div class= "col-3">
+            <div class= "form-group">
+                <label>Release Year</label>
+                <input required type="number" name = "releaseYear" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class= "col-5">
+            <div class="form-group">
+                <label>Director</label>
+                <input required type="text" name = "director" class="form-control">
+            </div>
+        </div>
+        <div class= "col-7">
+            <div class="form-group">
+                <label>Recording City</label>
+                <input required type="text" name="recordingCity" class="form-control">
+            </div>
+        </div>
+    </div>    
+        <div class="col-12">
+            <div class="form-group">
+                <label>Category Genre</label>
+                <input required type="text" name= "categoryGenre" class="form-control">
+            </div>
+        </div>
+    <button type = "submit" class="btn btn-primary mt-2">Edit season</button>
+</form>
+
+<?php require './templates/footer.phtml'; ?>

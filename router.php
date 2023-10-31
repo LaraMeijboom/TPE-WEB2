@@ -1,86 +1,75 @@
 <?php
-  require_once "./app/controllers/SeasonController.php";
-  require_once "./app/controllers/ChapterController.php";
-  require_once "./app/controllers/AuthController.php";
-  require_once "./app/controllers/EditorController.php";
-<<<<<<< HEAD
-=======
-
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
-
+  require_once './app/controllers/seasonController.php';
+  require_once './app/controllers/chapterController.php';
+  require_once './app/controllers/authController.php';
   define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
-
-
-  $action = 'home';
+  $action = 'seasons';
   if(!empty($_GET['action'])) {
-      $action = $_GET['action'] ;
+    $action = $_GET['action'] ;
   }
   
   $params = explode('/' , $action);
-  $seasonController = new SeasonController();
+  $seasonController = new SeasonsController ();
   $chapterController = new ChapterController();
   $authController = new AuthController();
-  $editorController = new EditorController();
-<<<<<<< HEAD
-=======
 
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
-  
+
+
+
   switch ($params[0]) {
-    case 'home':
+    case 'seasons':
       $seasonController->showSeasons();
-    break;
-    case'season' : 
-      $chapterController->ShowChapterOfSeason($params[1]);
-    break;
-    case 'login' :
-      $authController->showFormLogin();
-    break;
-    case 'validate':
-      $authController->validateUser();
-    break;
-    case 'editorSection': 
-      $editorController->itemsAsEditor();
-    break;
-    case 'addSeason': 
-      $editorController->addSeason();
-    break;
-    case 'addChapter':
-      $editorController->addChapter();
       break;
-    case 'showSeasons':
-      $seasonController->showSeasons();
-<<<<<<< HEAD
+    case 'deployChaptersOfSeasonID':
+      $chapterController->chaptersOfSeasonID($params[1]);
       break;
-    case 'delete':
-      $editorController->removeSeason($params[1]);
-      break;
-=======
-    break;
-    case 'deleteSeason':
-      $editorController->deleteSeason($params[1]);
-    break;
-    case 'deleteChapter':
-      $editorController->deleteChapter($params[1]);
-    break; 
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963
+    case 'chapters': 
+      $chapterController->showAllChapters(); 
+      break; 
+    case 'chapterOfSeason':
+      $seasonController->chapterOfSeason($params[1]);
+      break; 
+    case 'login':
+        $authController->showLogin(); 
+        break;
+    case 'auth':
+        $authController->auth();
+        break;
     case 'logout':
-      $authController->logout();
-    break;
-    case 'showEdit':
-      $editorController->showEdit($params[1]);
+        $authController->logout();
+        break;
+    case 'seasonsEdition': 
+      $seasonController->showSeasonEditor(); 
+      break; 
+    case 'addSeason':
+      $seasonController->addSeason(); 
       break;
-<<<<<<< HEAD
+    case 'deleteSeason': 
+      $seasonController->removeSeason($params[1]); 
+      break;
+    case 'showEditSeason':
+      $seasonController->showEditSeason($params[1]);
+      break; 
+    case 'editSeason': 
+      $seasonController->editSeason($params[1]); 
+      break;
+    
+    case 'chaptersEdition': 
+        $chapterController->showChapterEditor(); 
+        break; 
+      case 'addChapter':
+        $chapterController->addChapter(); 
+        break;
+      case 'deleteChapter': 
+        $chapterController->removeChapter($params[1]); 
+        break;
+      case 'showEditChapter':
+        $chapterController->showEditChapter($params[1]);
+        break; 
+      case 'editChapter': 
+        $chapterController->editChapter($params[1]); 
+        break;
+    
+
+   
   }
-  ?>
-=======
-    case 'editChapter':
-      $editorController->editChapter($params[1]);
-      break;
-    default: 
-      echo "404 Page Not Found";
-    break;
- }
-  
-?>
->>>>>>> 6e729e17076e14c8bb77a5490397ebd594e11963

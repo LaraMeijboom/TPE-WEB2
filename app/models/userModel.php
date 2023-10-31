@@ -1,5 +1,5 @@
 <?php 
-require_once './app/models/Model.php';
+require_once './app/models/model.php';
 class UserModel extends Model{
     public function getByName($name) {
         $query = $this->db->prepare('SELECT * FROM users WHERE name = ?');
@@ -7,6 +7,5 @@ class UserModel extends Model{
 
         return $query->fetch(PDO::FETCH_OBJ);
     }
-}
 
-?>
+}
