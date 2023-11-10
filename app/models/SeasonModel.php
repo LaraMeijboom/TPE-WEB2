@@ -39,4 +39,12 @@ class SeasonModel extends Model{
         return $query; 
     }
     
+    function seasonNumberExists($seasonNumber){
+        $query = $this->db->prepare('SELECT * FROM season WHERE seasonNumber = ?');
+        $query->execute([$seasonNumber]);
+
+        $season = $query->fetch(PDO::FETCH_OBJ);
+        return $season;
+    }
+
 }

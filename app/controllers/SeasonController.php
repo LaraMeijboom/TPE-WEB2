@@ -42,7 +42,12 @@ class SeasonsController{
         $categoryGenre = $_POST['categoryGenre'];
 
         if(empty($seasonNumber) ||empty($releaseYear ) ||empty($director) ||empty($recordingCity) ||empty($categoryGenre)){
-            $this->view->showError("completar todos los campos");
+            $this->view->showError("Complete all fields of the form");
+            die();
+        }
+        $seasonNumberExists = $this->seasonModel->seasonNumberExists($seasonNumber);
+        if($seasonNumberExists){
+            $this->view->showError("Error there is already a season with that number");
             die();
         }
         $id = $this->seasonModel->insertSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre);
@@ -50,7 +55,7 @@ class SeasonsController{
             header('Location:' . BASE_URL . 'seasonsEdition');
         }
         else{
-            $this->view->showError("Error al insertar Season");
+            $this->view->showError("Error inserting Season");
         }
     }
 
@@ -74,7 +79,12 @@ class SeasonsController{
         $categoryGenre = $_POST['categoryGenre'];
 
         if(empty($seasonNumber) ||empty($releaseYear ) ||empty($director) ||empty($recordingCity) ||empty($categoryGenre)){
-            $this->view->showError("completar todos los campos");
+            $this->view->showError("Complete all fields of the form");
+            die();
+        }
+        $seasonNumberExists = $this->seasonModel->seasonNumberExists($seasonNumber);
+        if($seasonNumberExists){
+            $this->view->showError("Error there is already a season with that number");
             die();
         }
         $id = $this->seasonModel->updateSeason($seasonNumber,$releaseYear, $director, $recordingCity, $categoryGenre, $id);
@@ -82,7 +92,7 @@ class SeasonsController{
             header('Location:' . BASE_URL . 'seasonsEdition');
         }
         else{
-            $this->view->showError("Error al insertar Season");
+            $this->view->showError("Error editing Season");
         }
     }
 }

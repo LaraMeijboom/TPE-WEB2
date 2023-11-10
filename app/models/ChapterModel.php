@@ -38,4 +38,13 @@ class ChapterModel extends Model{
         $query->execute([$chapterNumber, $name, $description, $id]);
         return $query; 
     }
+
+
+    function chapterNumberExists($chapterNumber){
+        $query = $this->db->prepare('SELECT * FROM chapter WHERE chapterNumber = ?');
+        $query->execute([$chapterNumber]);
+
+        $chapter = $query->fetch(PDO::FETCH_OBJ);
+        return $chapter;
+    }
 }
