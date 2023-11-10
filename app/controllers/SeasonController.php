@@ -61,9 +61,14 @@ class SeasonsController{
 
     function removeSeason($id){
         $this->authHelper->checkLoggedIn();
+        $tiene = $this->chapterModel->getChaptersOfSeasonID($id);
+        if($tiene){
+            $this->view->showError("This season contains chapters. Can not be deleted");
+            die();
+        }
         $this->seasonModel->deleteSeason($id);
         header('Location:'. BASE_URL . 'seasonsEdition');
-    }
+}
 
     function showEditSeason($season_id){
         $this->authHelper->checkLoggedIn();
